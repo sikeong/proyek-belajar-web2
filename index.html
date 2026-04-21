@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keong Store - Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="adminBar" class="admin-top-bar">
+        <span id="adminStatus"><i class="fas fa-user-circle"></i> Mode Pengunjung</span>
+        <button onclick="loginAdmin()" class="btn-login-small">Login Admin</button>
+    </div>
+
+    <div class="container">
+        <header class="header-section">
+            <div class="profile-wrapper">
+                <img src="logo keong.jpeg" class="img-logo" alt="Logo Keong Store"/>
+            </div>
+            <h1 class="title-text">KEONG<span>STORE</span></h1>
+            <p class="subtitle-text">Pusat Kebutuhan Gaming, Elektronik, & Fashion</p>
+        </header>
+
+        <section class="search-filter-section">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Cari produk di Keong store..." onkeyup="searchProduct()">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="category-filter">
+                <button class="btn-filter active" onclick="filterProduct('semua')">Semua</button>
+                <button class="btn-filter" onclick="filterProduct('gaming')">Gaming</button>
+                <button class="btn-filter" onclick="filterProduct('elektronik')">Elektronik</button>
+                <button class="btn-filter" onclick="filterProduct('fashion')">Fashion</button>
+            </div>
+        </section>
+
+        <main class="katalog-section" id="katalog"></main>
+
+        <section class="admin-section" id="adminArea" style="display: none;">
+            <h3><i class="fas fa-plus-circle"></i> Tambah Dagangan</h3>
+            <div class="form-grid">
+                <input type="text" id="prodName" placeholder="Nama Barang">
+                <select id="prodCategory">
+                    <option value="gaming">Gaming</option>
+                    <option value="elektronik">Elektronik</option>
+                    <option value="fashion">Fashion</option>
+                </select>
+                <input type="number" id="prodPrice" placeholder="Harga (Contoh: 120000)">
+                <input type="text" id="prodStock" placeholder="Jumlah Stok">
+                <input type="text" id="prodSize" placeholder="Ukuran">
+                <textarea id="prodDesc" placeholder="Deskripsi Barang"></textarea>
+                <div class="file-input">
+                    <label for="prodImage">Pilih Foto Produk (Bisa lebih dari 1)</label>
+                    <input type="file" id="prodImage" accept="image/*" multiple>
+                </div>
+                <button class="btn-submit" onclick="addNewProduct()">Posting Sekarang</button>
+            </div>
+        </section>
+
+        <footer class="container-footer">
+            <div class="social-links">
+                <a href="https://instagram.com/si.keong.36" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@Keong_1174" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2026 Keong Store. Dibuat dengan ❤️ oleh Keong</p>
+        </footer>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <div id="imageSlider" class="slider-wrapper">
+                        </div>
+                    <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalPrice" class="price-detail"></p>
+                    <hr>
+                    <p id="modalDesc" class="desc-text"></p>
+                    <div class="specs">
+                        <p><i class="fas fa-boxes"></i> Stok: <span id="modalStock"></span></p>
+                        <p><i class="fas fa-ruler-combined"></i> Ukuran: <span id="modalSize"></span></p>
+                    </div>
+                    <a href="#" id="igLink" class="btn-buy-now">
+                        <i class="fab fa-instagram"></i> Tanya Penjual di IG
+                    </a>
+                </div>
+            </div>
+            
+            <div class="comment-area">
+                <h4>Komentar & Diskusi</h4>
+                <div class="comment-list" id="commentList"></div>
+                <div class="comment-input">
+                    <input type="text" id="inputChat" placeholder="Tulis komentar/chat...">
+                    <button onclick="sendComment()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
